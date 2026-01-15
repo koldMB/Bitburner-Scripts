@@ -1,5 +1,6 @@
 /** @param {NS} ns **/
 import { multiscan, gainRootAccess } from "utils.js";
+import { main as copyFiles } from "copy-files.js";
 
 function maxElement(arr) {
 	let max = 0;
@@ -240,6 +241,10 @@ export async function main(ns) {
 	if (reserved_RAM == null) {
 		reserved_RAM = 0;
 	}
+	
+	// Run copy-files on startup
+	await copyFiles(ns);
+	
 	while (true) {
 		let full_list = multiscan(ns, 'home');
 
