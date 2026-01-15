@@ -63,3 +63,10 @@ Takes two arguments:
 
 It will attempt to open as many ports as possible on the server before nuking.\
 If the player does not have enough files to open the required number of ports by the end of the function, it does not attempt to nuke.
+
+## copy-files.js
+___Requires `utils.js` to run___\
+Scans all available servers and copies `targeted-hack.js`, `targeted-grow.js`, and `targeted-weaken.js` to each server.\
+If any of these files already exist on a target server, they will be deleted first before copying the new versions over.\
+This script is automatically executed at the startup of `hack-manager.js` to ensure all servers have the latest versions of the required scripts.
+
