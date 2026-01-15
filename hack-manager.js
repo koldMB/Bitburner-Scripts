@@ -89,7 +89,7 @@ async function little_prep(ns, hack_target, wt, gt, reserved_RAM) {
 				threads = Math.floor((ns.getServerMaxRam(server) - ns.getServerUsedRam(server)) / ns.getScriptRam('targeted-weaken.js', 'home'));
 			}
 			if (threads > weaken_threads) {
-				threads = weaken_threads;
+				threads = Math.floor(weaken_threads);
 			}
 			if (threads >= 1) {
 				ns.exec('targeted-weaken.js', server, threads, threads, hack_target);
@@ -105,7 +105,7 @@ async function little_prep(ns, hack_target, wt, gt, reserved_RAM) {
 				threads = Math.floor((ns.getServerMaxRam(server) - ns.getServerUsedRam(server)) / ns.getScriptRam('targeted-grow.js', 'home'));
 			}
 			if (threads > grow_threads) {
-				threads = grow_threads;
+				threads = Math.floor(grow_threads);
 			}
 			if (threads >= 1) {
 				ns.exec('targeted-grow.js', server, threads, threads, 0, hack_target);
@@ -210,7 +210,7 @@ async function little_hack(ns, hack_target, weaken_threads, grow_threads, hack_t
 					threads = Math.floor((ns.getServerMaxRam(server) - ns.getServerUsedRam(server)) / ns.getScriptRam('targeted-hack.js', 'home'));
 				}
 				if (threads > hack_threads) {
-					threads = hack_threads;
+					threads = Math.floor(hack_threads);
 				}
 				if (threads >= 1) {
 					ns.exec('targeted-hack.js', server, threads, threads, ns.getWeakenTime(hack_target) - ns.getHackTime(hack_target) + 500, hack_target, n, threads);

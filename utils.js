@@ -1,17 +1,19 @@
 /** @param {NS} ns **/
-export function multiscan(ns, server) {
-	let serverList = [];
-	function scanning(server) {
-		let currentScan = ns.scan(server);
-		currentScan.forEach(server => {
-			if (!serverList.includes(server)) {
-				serverList.push(server);
-				scanning(server);
-			}
-		})
-	}
-	scanning(server);
-	return serverList;
+export function multiscan(ns, startServer) {
+    const serverList = new Set();
+
+    function scanning(server) {
+        if (serverList.has(server)) return; // already visited
+        serverList.add(server);
+
+        const neighbors = ns.scan(server);
+        for (const next of neighbors) {
+            scanning(next);
+        }
+    }
+
+    scanning(startServer);
+    return Array.from(serverList);
 }
 
 export function gainRootAccess(ns, server) {
